@@ -6,6 +6,7 @@ using IniParser;
 using IniParser.Model;
 using Microsoft.Extensions.DependencyInjection;
 using RandomCats.Forms;
+using RandomCats.Properties;
 
 namespace RandomCats
 {
@@ -72,6 +73,9 @@ namespace RandomCats
             {
                 // Getting an instance of the Main class with the CatApiService injected
                 MainForm mainForm = serviceProvider.GetRequiredService<MainForm>();
+
+                // Set icon
+                mainForm.Icon = Resources.icon;
 
                 // Running the application
                 Application.Run(mainForm);

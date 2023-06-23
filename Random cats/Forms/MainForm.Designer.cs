@@ -39,11 +39,11 @@ namespace RandomCats.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.Color.Black;
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(1102, 12);
+            this.button1.Location = new System.Drawing.Point(1172, 12);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(82, 677);
+            this.button1.Size = new System.Drawing.Size(82, 705);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Random cat";
+            this.button1.Text = "Get\r\nrandom\r\ncat\r\npicture";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.GetRandomCat_Click);
             // 
@@ -59,7 +59,7 @@ namespace RandomCats.Forms
             this.webView21.ForeColor = System.Drawing.Color.White;
             this.webView21.Location = new System.Drawing.Point(12, 12);
             this.webView21.Name = "webView21";
-            this.webView21.Size = new System.Drawing.Size(1084, 677);
+            this.webView21.Size = new System.Drawing.Size(1154, 705);
             this.webView21.TabIndex = 1;
             this.webView21.ZoomFactor = 1D;
             // 
@@ -68,7 +68,7 @@ namespace RandomCats.Forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1196, 701);
+            this.ClientSize = new System.Drawing.Size(1266, 729);
             this.Controls.Add(this.webView21);
             this.Controls.Add(this.button1);
             this.Name = "MainForm";
