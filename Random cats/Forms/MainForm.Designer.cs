@@ -35,11 +35,13 @@ namespace RandomCats.Forms
             // 
             // button1
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.Location = new System.Drawing.Point(1098, 22);
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackColor = System.Drawing.Color.Black;
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(1102, 12);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(86, 23);
+            this.button1.Size = new System.Drawing.Size(82, 677);
             this.button1.TabIndex = 0;
             this.button1.Text = "Random cat";
             this.button1.UseVisualStyleBackColor = false;
@@ -57,7 +59,7 @@ namespace RandomCats.Forms
             this.webView21.ForeColor = System.Drawing.Color.White;
             this.webView21.Location = new System.Drawing.Point(12, 12);
             this.webView21.Name = "webView21";
-            this.webView21.Size = new System.Drawing.Size(1072, 677);
+            this.webView21.Size = new System.Drawing.Size(1084, 677);
             this.webView21.TabIndex = 1;
             this.webView21.ZoomFactor = 1D;
             // 
@@ -71,7 +73,7 @@ namespace RandomCats.Forms
             this.Controls.Add(this.button1);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Random Kittens";
+            this.Text = "Random kittens";
             this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).EndInit();
             this.ResumeLayout(false);

@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,9 +24,7 @@ namespace RandomCats.Forms
 
         private async Task InitializeWebView()
         {
-            string cacheFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Sefinek");
-
-            CoreWebView2Environment coreWeb = await CoreWebView2Environment.CreateAsync(null, cacheFolder, new CoreWebView2EnvironmentOptions());
+            CoreWebView2Environment coreWeb = await CoreWebView2Environment.CreateAsync(null, Program.AppData, new CoreWebView2EnvironmentOptions());
             await webView21.EnsureCoreWebView2Async(coreWeb);
         }
 
@@ -36,14 +33,11 @@ namespace RandomCats.Forms
             try
             {
                 string imageUrl = await _catApiService.GetRandomCatImageUrl();
-                if (!string.IsNullOrEmpty(imageUrl))
-                    webView21.CoreWebView2.Navigate(imageUrl);
-                else
-                    MessageBox.Show(@"Failed to retrieve image URL from the API.");
+                if (!string.IsNullOrEmpty(imageUrl)) webView21.CoreWebView2.Navigate(imageUrl);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred:\n\n{ex}");
+                MessageBox.Show($"An error occurred:\n\n{ex}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
@@ -55,6 +49,7 @@ namespace RandomCats.Forms
         public CatApiService(HttpClient httpClient)
         {
             _httpClient = httpClient;
+            _httpClient.DefaultRequestHeaders.Add("User-Agent", $"Mozilla/5.0 (compatible; RandomCats/{Application.ProductVersion}; +https://sefinek.net)");
         }
 
         public async Task<string> GetRandomCatImageUrl()
@@ -63,14 +58,15 @@ namespace RandomCats.Forms
             if (response.IsSuccessStatusCode)
             {
                 string jsonResponse = await response.Content.ReadAsStringAsync();
+                ApiResponse apiRes = JsonConvert.DeserializeObject<ApiResponse>(jsonResponse);
 
-                ApiResponse apiResponse = JsonConvert.DeserializeObject<ApiResponse>(jsonResponse);
-                if (apiResponse.Success) return apiResponse.Message;
+                if (apiRes.Success) return apiRes.Message;
+
+                MessageBox.Show($"Something went wrong.\n\nResponse code: {apiRes.Status}\nMessage: {apiRes.Message}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
-            else
-            {
-                MessageBox.Show($"An error occurred while retrieving data from the API.\n\nResponse code: {response.StatusCode}");
-            }
+
+            MessageBox.Show($"An error occurred while retrieving data from the API.\n\nResponse: {response.StatusCode}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             return null;
         }
