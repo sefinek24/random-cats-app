@@ -17,14 +17,15 @@ namespace RandomCats.Forms
             InitializeComponent();
         }
 
-        private async void Main_Load(object sender, EventArgs e)
+        private async void MainForm_Load(object sender, EventArgs e)
         {
             await InitializeWebView();
         }
 
         private async Task InitializeWebView()
         {
-            CoreWebView2Environment coreWeb = await CoreWebView2Environment.CreateAsync(null, Program.AppData, new CoreWebView2EnvironmentOptions());
+            CoreWebView2EnvironmentOptions options = new CoreWebView2EnvironmentOptions();
+            CoreWebView2Environment coreWeb = await CoreWebView2Environment.CreateAsync(null, Program.AppData, options);
             await webView21.EnsureCoreWebView2Async(coreWeb);
         }
 
@@ -33,7 +34,8 @@ namespace RandomCats.Forms
             try
             {
                 string imageUrl = await _catApiService.GetRandomCatImageUrl();
-                if (!string.IsNullOrEmpty(imageUrl)) webView21.CoreWebView2.Navigate(imageUrl);
+                if (!string.IsNullOrEmpty(imageUrl))
+                    webView21.CoreWebView2.Navigate(imageUrl);
             }
             catch (Exception ex)
             {
@@ -58,15 +60,17 @@ namespace RandomCats.Forms
             if (response.IsSuccessStatusCode)
             {
                 string jsonResponse = await response.Content.ReadAsStringAsync();
-                ApiResponse apiRes = JsonConvert.DeserializeObject<ApiResponse>(jsonResponse);
+                ApiResponse apiResponse = JsonConvert.DeserializeObject<ApiResponse>(jsonResponse);
 
-                if (apiRes.Success) return apiRes.Message;
+                if (apiResponse.Success)
+                    return apiResponse.Message;
 
-                MessageBox.Show($"Something went wrong.\n\nResponse code: {apiRes.Status}\nMessage: {apiRes.Message}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
+                MessageBox.Show($"Something went wrong.\n\nResponse code: {apiResponse.Status}\nMessage: {apiResponse.Message}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            MessageBox.Show($"An error occurred while retrieving data from the API.\n\nResponse: {response.StatusCode}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                MessageBox.Show($"An error occurred while retrieving data from the API.\n\nResponse: {response.StatusCode}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             return null;
         }
