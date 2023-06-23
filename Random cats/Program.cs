@@ -2,9 +2,9 @@ using System;
 using System.Net.Http;
 using System.Windows.Forms;
 using Microsoft.Extensions.DependencyInjection;
-using Random_cats.Forms;
+using RandomCats.Forms;
 
-namespace Random_cats
+namespace RandomCats
 {
     internal static class Program
     {
@@ -25,7 +25,7 @@ namespace Random_cats
             using (ServiceProvider serviceProvider = services.BuildServiceProvider())
             {
                 // Pobieranie instancji klasy Main z wstrzykniętym CatApiService
-                Main mainForm = serviceProvider.GetRequiredService<Main>();
+                MainForm mainForm = serviceProvider.GetRequiredService<MainForm>();
 
                 // Uruchomienie aplikacji
                 Application.Run(mainForm);
@@ -37,7 +37,7 @@ namespace Random_cats
             // Rejestracja klas wstrzykiwanych
             services.AddTransient<HttpClient>(); // Jeśli korzystasz z .NET Core 2.1+, możesz użyć AddHttpClient zamiast używać HttpClient bezpośrednio
             services.AddSingleton<CatApiService>();
-            services.AddTransient<Main>();
+            services.AddTransient<MainForm>();
         }
     }
 }

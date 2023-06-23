@@ -6,13 +6,13 @@ using System.Windows.Forms;
 using Microsoft.Web.WebView2.Core;
 using Newtonsoft.Json;
 
-namespace Random_cats.Forms
+namespace RandomCats.Forms
 {
-    public partial class Main : Form
+    public partial class MainForm : Form
     {
         private readonly CatApiService _catApiService;
 
-        public Main(CatApiService catApiService)
+        public MainForm(CatApiService catApiService)
         {
             _catApiService = catApiService;
             InitializeComponent();
@@ -39,27 +39,27 @@ namespace Random_cats.Forms
                 if (!string.IsNullOrEmpty(imageUrl))
                     webView21.CoreWebView2.Navigate(imageUrl);
                 else
-                    MessageBox.Show("Nie udało się pobrać adresu URL obrazka z API.");
+                    MessageBox.Show(@"Failed to retrieve image URL from the API.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Wystąpił błąd: {ex.Message}");
+                MessageBox.Show($"An error occurred:\n\n{ex}");
             }
         }
     }
 
     public class CatApiService
     {
-        private readonly HttpClient httpClient;
+        private readonly HttpClient _httpClient;
 
         public CatApiService(HttpClient httpClient)
         {
-            this.httpClient = httpClient;
+            _httpClient = httpClient;
         }
 
         public async Task<string> GetRandomCatImageUrl()
         {
-            HttpResponseMessage response = await httpClient.GetAsync("https://api.sefinek.net/api/v2/random/animal/cat");
+            HttpResponseMessage response = await _httpClient.GetAsync("https://api.sefinek.net/api/v2/random/animal/cat");
             if (response.IsSuccessStatusCode)
             {
                 string jsonResponse = await response.Content.ReadAsStringAsync();
@@ -69,7 +69,7 @@ namespace Random_cats.Forms
             }
             else
             {
-                MessageBox.Show($"Wystąpił błąd podczas pobierania danych z API. Kod odpowiedzi: {response.StatusCode}");
+                MessageBox.Show($"An error occurred while retrieving data from the API.\n\nResponse code: {response.StatusCode}");
             }
 
             return null;
