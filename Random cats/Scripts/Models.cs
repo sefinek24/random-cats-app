@@ -1,4 +1,4 @@
-namespace RandomCats.Scripts
+﻿namespace RandomCats.Scripts
 {
     internal class Models
     {
