@@ -16,7 +16,7 @@ namespace RandomCats.Forms
         private const string TheCatApi = "https://api.thecatapi.com/v1/breeds";
         private readonly CatApiService _catApiService;
         private readonly string AppPath = Application.ExecutablePath;
-        private readonly string PublisherName = "Random cat images UwU";
+        private readonly string AutoStartTitle = "Random cat images UwU";
         private Breeds _breedsForm;
 
         public MainForm(CatApiService catApiService)
@@ -54,7 +54,7 @@ namespace RandomCats.Forms
             int index = comboBox1.FindStringExact("ragd");
             if (index != -1) comboBox1.SelectedIndex = index;
 
-            bool isAppInAutoStart = IsApplicationInAutoStart(PublisherName, AppPath);
+            bool isAppInAutoStart = IsApplicationInAutoStart(AutoStartTitle, AppPath);
             button3.Text = isAppInAutoStart ? "Remove from autostart" : "Add to autostart";
         }
 
@@ -67,18 +67,18 @@ namespace RandomCats.Forms
 
         private void AddToAutoStart_Click(object sender, EventArgs e)
         {
-            bool isAppInAutoStart = IsApplicationInAutoStart(PublisherName, AppPath);
+            bool isAppInAutoStart = IsApplicationInAutoStart(AutoStartTitle, AppPath);
 
             RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
             if (isAppInAutoStart)
             {
-                key?.DeleteValue(PublisherName, false);
-                button3.Text = @"Add to autostart";
+                key?.DeleteValue(AutoStartTitle, false);
+                button3.Text = @"Add to AutoStart";
             }
             else
             {
-                key?.SetValue(PublisherName, AppPath);
-                button3.Text = @"Remove from autostart";
+                key?.SetValue(AutoStartTitle, AppPath);
+                button3.Text = @"Remove from AutoStart";
             }
 
             key?.Close();
@@ -146,7 +146,7 @@ namespace RandomCats.Forms
         {
             RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
             string value = key?.GetValue(publisherName) as string;
-            key.Close();
+            key?.Close();
 
             return string.Equals(value, appPath, StringComparison.OrdinalIgnoreCase);
         }
@@ -167,7 +167,7 @@ namespace RandomCats.Forms
             catch (Exception ex)
             {
                 // Obsługa błędów
-                MessageBox.Show("Wystąpił błąd podczas pobierania faktów o kotach: " + ex.Message);
+                MessageBox.Show(@"Wystąpił błąd podczas pobierania faktów o kotach: " + ex.Message);
             }
         }
 
@@ -176,17 +176,12 @@ namespace RandomCats.Forms
             using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage response = await client.GetAsync("https://catfact.ninja/fact");
+                if (!response.IsSuccessStatusCode) throw new Exception("Wystąpił błąd podczas pobierania faktów o kotach. Kod odpowiedzi HTTP: " + response.StatusCode);
 
-                if (response.IsSuccessStatusCode)
-                {
-                    string json = await response.Content.ReadAsStringAsync();
-                    dynamic factData = JsonConvert.DeserializeObject(json);
-
-                    string fact = factData.fact;
-                    return fact;
-                }
-
-                throw new Exception("Wystąpił błąd podczas pobierania faktów o kotach. Kod odpowiedzi HTTP: " + response.StatusCode);
+                string json = await response.Content.ReadAsStringAsync();
+                dynamic factData = JsonConvert.DeserializeObject(json);
+                string fact = factData?.fact;
+                return fact;
             }
         }
 

@@ -50,7 +50,7 @@ namespace RandomCats.Forms
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.Color.Black;
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(1201, 229);
+            this.button1.Location = new System.Drawing.Point(1201, 221);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(129, 55);
             this.button1.TabIndex = 0;
@@ -102,7 +102,7 @@ namespace RandomCats.Forms
             this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button5.BackColor = System.Drawing.Color.Black;
             this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(1201, 290);
+            this.button5.Location = new System.Drawing.Point(1201, 282);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(129, 55);
             this.button5.TabIndex = 5;
@@ -115,7 +115,7 @@ namespace RandomCats.Forms
             this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button6.BackColor = System.Drawing.Color.Black;
             this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(1201, 351);
+            this.button6.Location = new System.Drawing.Point(1201, 343);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(129, 55);
             this.button6.TabIndex = 6;
@@ -128,7 +128,7 @@ namespace RandomCats.Forms
             this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button7.BackColor = System.Drawing.Color.Black;
             this.button7.ForeColor = System.Drawing.Color.White;
-            this.button7.Location = new System.Drawing.Point(1201, 412);
+            this.button7.Location = new System.Drawing.Point(1201, 404);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(129, 55);
             this.button7.TabIndex = 7;
@@ -141,7 +141,7 @@ namespace RandomCats.Forms
             this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button8.BackColor = System.Drawing.Color.Black;
             this.button8.ForeColor = System.Drawing.Color.White;
-            this.button8.Location = new System.Drawing.Point(1201, 473);
+            this.button8.Location = new System.Drawing.Point(1201, 465);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(129, 55);
             this.button8.TabIndex = 8;
@@ -154,7 +154,7 @@ namespace RandomCats.Forms
             this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button9.BackColor = System.Drawing.Color.Black;
             this.button9.ForeColor = System.Drawing.Color.White;
-            this.button9.Location = new System.Drawing.Point(1201, 534);
+            this.button9.Location = new System.Drawing.Point(1201, 526);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(129, 55);
             this.button9.TabIndex = 9;
@@ -167,7 +167,7 @@ namespace RandomCats.Forms
             this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button10.BackColor = System.Drawing.Color.Black;
             this.button10.ForeColor = System.Drawing.Color.White;
-            this.button10.Location = new System.Drawing.Point(1201, 595);
+            this.button10.Location = new System.Drawing.Point(1201, 587);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(129, 55);
             this.button10.TabIndex = 10;
