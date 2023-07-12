@@ -4,7 +4,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Web.WebView2.Core;
-using Microsoft.Win32;
 using Newtonsoft.Json;
 using RandomCats.Properties;
 using RandomCats.Scripts;
@@ -14,9 +13,9 @@ namespace RandomCats.Forms
     public partial class MainForm : Form
     {
         private const string TheCatApi = "https://api.thecatapi.com/v1/breeds";
+        public static readonly string AppPath = Application.ExecutablePath;
+        public static readonly string AutoStartTitle = "Random cat images UwU";
         private readonly CatApiService _catApiService;
-        private readonly string AppPath = Application.ExecutablePath;
-        private readonly string AutoStartTitle = "Random cat images UwU";
         private Breeds _breedsForm;
 
         public MainForm(CatApiService catApiService)
@@ -30,8 +29,11 @@ namespace RandomCats.Forms
             comboBox1.Items.Add("Loading...");
             comboBox1.SelectedIndex = comboBox1.Items.Count - 1;
 
-
             await InitializeWebView();
+
+            Random random = new Random();
+            int randomIndex = random.Next(comboBox2.Items.Count);
+            comboBox2.SelectedIndex = randomIndex;
 
             using (HttpClient client = new HttpClient())
             {
@@ -53,9 +55,6 @@ namespace RandomCats.Forms
 
             int index = comboBox1.FindStringExact("ragd");
             if (index != -1) comboBox1.SelectedIndex = index;
-
-            bool isAppInAutoStart = IsApplicationInAutoStart(AutoStartTitle, AppPath);
-            button3.Text = isAppInAutoStart ? "Remove from autostart" : "Add to autostart";
         }
 
         private async Task InitializeWebView()
@@ -65,90 +64,14 @@ namespace RandomCats.Forms
             await webView21.EnsureCoreWebView2Async(coreWeb);
         }
 
-        private void AddToAutoStart_Click(object sender, EventArgs e)
+        private void Informations_Click(object sender, EventArgs e)
         {
-            bool isAppInAutoStart = IsApplicationInAutoStart(AutoStartTitle, AppPath);
-
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
-            if (isAppInAutoStart)
-            {
-                key?.DeleteValue(AutoStartTitle, false);
-                button3.Text = @"Add to AutoStart";
-            }
-            else
-            {
-                key?.SetValue(AutoStartTitle, AppPath);
-                button3.Text = @"Remove from AutoStart";
-            }
-
-            key?.Close();
+            new Info { Icon = Resources.icon }.ShowDialog();
         }
 
-        private async void DeleteCache_Click(object sender, EventArgs e)
+        private void Options_Click(object sender, EventArgs e)
         {
-            Hide();
-
-            await Task.Delay(100);
-
-            string webView2Folder = Path.Combine(Program.AppData, "EBWebView");
-
-            try
-            {
-                long totalSavedSpace = 0;
-                int filesDeleted = 0;
-
-                if (Directory.Exists(webView2Folder))
-                {
-                    string[] files = Directory.GetFiles(webView2Folder, "*", SearchOption.AllDirectories);
-
-                    foreach (string file in files)
-                        try
-                        {
-                            FileInfo fileInfo = new FileInfo(file);
-
-                            totalSavedSpace += fileInfo.Length;
-
-                            File.Delete(file);
-
-                            filesDeleted++;
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine(@"An error occurred while deleting the file: " + ex.Message);
-                        }
-
-                    if (filesDeleted > 0)
-                    {
-                        // Files were deleted, inform the user about the memory saved
-                        double savedSpaceInMb = (double)totalSavedSpace / (1024 * 1024);
-                        MessageBox.Show($"Deleted {filesDeleted} files.\nSaved {savedSpaceInMb.ToString("0.##")} MB of memory.");
-                    }
-                    else
-                    {
-                        MessageBox.Show(@"No files to delete.");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show(@"WebView2 folder not found. No files to delete.");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(@"An error occurred while deleting cache files: " + ex.Message);
-            }
-
-            Show();
-        }
-
-
-        private bool IsApplicationInAutoStart(string publisherName, string appPath)
-        {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
-            string value = key?.GetValue(publisherName) as string;
-            key?.Close();
-
-            return string.Equals(value, appPath, StringComparison.OrdinalIgnoreCase);
+            new Options { Icon = Resources.icon }.ShowDialog();
         }
 
         private async void GetRandomCatFacts_Click(object sender, EventArgs e)
@@ -166,7 +89,6 @@ namespace RandomCats.Forms
             }
             catch (Exception ex)
             {
-                // Obsługa błędów
                 MessageBox.Show(@"Wystąpił błąd podczas pobierania faktów o kotach: " + ex.Message);
             }
         }
@@ -196,6 +118,24 @@ namespace RandomCats.Forms
             {
                 MessageBox.Show($"An error occurred:\n\n{ex}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void Pinterest_Click(object sender, EventArgs e)
+        {
+            string[] links =
+            {
+                "https://pinterest.com/search/pins/?q=cute%20cat&rs=typed",
+                "https://pinterest.com/search/pins/?q=pretty%20cat&rs=typed",
+                "https://pinterest.com/search/pins/?q=ragdoll%20kitten&rs=guide&add_refine=Kitten%7Cguide%7Cword%7C2",
+                "https://pinterest.com/search/pins/?q=cute%20siamese%20cats&rs=typed"
+            };
+
+            Random random = new Random();
+            int randomIndex = random.Next(links.Length);
+            string randomLink = links[randomIndex];
+
+
+            webView21.CoreWebView2.Navigate(randomLink);
         }
 
         private async void GetRandomCat1_Click(object sender, EventArgs e)
@@ -259,6 +199,17 @@ namespace RandomCats.Forms
 
             string url = $"https://cataas.com/cat/gif/says/{text}?filter=sepia&color={color}&size={size}&type=or";
             webView21.CoreWebView2.Navigate(url);
+        }
+
+        private void GetRandomHTTPCat_Click(object sender, EventArgs e)
+        {
+            string selectedValue = comboBox2.SelectedItem.ToString();
+            string firstThreeDigits = selectedValue.Substring(0, 3);
+            webView21.CoreWebView2.Navigate($"https://http.cat/{firstThreeDigits}");
+
+            Random random = new Random();
+            int randomIndex = random.Next(comboBox2.Items.Count);
+            comboBox2.SelectedIndex = randomIndex;
         }
 
         private async void JustGetCatPic_Click(object sender, EventArgs e)
