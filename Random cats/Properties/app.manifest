@@ -77,4 +77,7 @@
   </dependency>
   -->
 
+    <asmv3:windowsSettings xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">
+        <dpiAware>true</dpiAware>
+    </asmv3:windowsSettings>
 </assembly>

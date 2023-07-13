@@ -169,7 +169,10 @@
   <ItemGroup />
   <ItemGroup>
     <None Include="Resources\39632.jpg" />
-    <Content Include="website\facts.html">
+    <Content Include="www\loaded.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\facts.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

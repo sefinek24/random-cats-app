@@ -57,7 +57,7 @@
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <NoWarn>$(NoWarn);NU1702</NoWarn>
     <EntryPointProjectUniqueName>..\Random cats\Random cats.csproj</EntryPointProjectUniqueName>
-    <PackageCertificateThumbprint>AFDE10DE7B4A70163E81F21156AC3A7FE511D441</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>C9073A2BF1364FFE58F04D9658EC2884B9FF7464</PackageCertificateThumbprint>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>

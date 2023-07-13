@@ -16,7 +16,12 @@ namespace RandomCats.Forms
         public static readonly string AppPath = Application.ExecutablePath;
         public static readonly string AutoStartTitle = "Random cat images UwU";
         private readonly CatApiService _catApiService;
+        private readonly string FactsHtml = Path.Combine("www", "facts.html");
+
+        // Paths
+        private readonly string LoadedHtml = Path.Combine("www", "loaded.html");
         private Breeds _breedsForm;
+
 
         public MainForm(CatApiService catApiService)
         {
@@ -62,6 +67,10 @@ namespace RandomCats.Forms
             CoreWebView2EnvironmentOptions options = new CoreWebView2EnvironmentOptions();
             CoreWebView2Environment coreWeb = await CoreWebView2Environment.CreateAsync(null, Program.AppData, options);
             await webView21.EnsureCoreWebView2Async(coreWeb);
+
+
+            string html = File.ReadAllText(LoadedHtml);
+            webView21.NavigateToString(html);
         }
 
         private void Informations_Click(object sender, EventArgs e)
@@ -80,11 +89,8 @@ namespace RandomCats.Forms
             {
                 string fact = await GetCatFact();
 
-                string filePath = Path.Combine("website", "facts.html");
-                string htmlTemplate = File.ReadAllText(filePath);
-
+                string htmlTemplate = File.ReadAllText(FactsHtml);
                 string updatedHtml = htmlTemplate.Replace("{{CatFact}}", fact);
-
                 webView21.NavigateToString(updatedHtml);
             }
             catch (Exception ex)

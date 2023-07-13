@@ -54,6 +54,7 @@ namespace RandomCats.Forms
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(14)))));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(1262, 260);
             this.button1.Name = "button1";
@@ -68,6 +69,7 @@ namespace RandomCats.Forms
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(14)))));
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(1262, 112);
             this.button2.Name = "button2";
@@ -82,6 +84,7 @@ namespace RandomCats.Forms
             // 
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(14)))));
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button4.ForeColor = System.Drawing.Color.White;
             this.button4.Location = new System.Drawing.Point(1262, 153);
             this.button4.Name = "button4";
@@ -96,6 +99,7 @@ namespace RandomCats.Forms
             // 
             this.button5.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(14)))));
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button5.ForeColor = System.Drawing.Color.White;
             this.button5.Location = new System.Drawing.Point(1261, 301);
             this.button5.Name = "button5";
@@ -110,6 +114,7 @@ namespace RandomCats.Forms
             // 
             this.button6.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(14)))));
+            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button6.ForeColor = System.Drawing.Color.White;
             this.button6.Location = new System.Drawing.Point(1262, 342);
             this.button6.Name = "button6";
@@ -124,6 +129,7 @@ namespace RandomCats.Forms
             // 
             this.button7.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(14)))));
+            this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button7.ForeColor = System.Drawing.Color.White;
             this.button7.Location = new System.Drawing.Point(1262, 383);
             this.button7.Name = "button7";
@@ -138,6 +144,7 @@ namespace RandomCats.Forms
             // 
             this.button8.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(14)))));
+            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button8.ForeColor = System.Drawing.Color.White;
             this.button8.Location = new System.Drawing.Point(1261, 424);
             this.button8.Name = "button8";
@@ -152,6 +159,7 @@ namespace RandomCats.Forms
             // 
             this.button9.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.button9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(14)))));
+            this.button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button9.ForeColor = System.Drawing.Color.White;
             this.button9.Location = new System.Drawing.Point(1262, 465);
             this.button9.Name = "button9";
@@ -166,6 +174,7 @@ namespace RandomCats.Forms
             // 
             this.button10.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.button10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(14)))));
+            this.button10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button10.ForeColor = System.Drawing.Color.White;
             this.button10.Location = new System.Drawing.Point(1262, 506);
             this.button10.Name = "button10";
@@ -180,6 +189,7 @@ namespace RandomCats.Forms
             // 
             this.button11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(14)))));
+            this.button11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button11.ForeColor = System.Drawing.Color.White;
             this.button11.Location = new System.Drawing.Point(1262, 694);
             this.button11.Name = "button11";
@@ -223,6 +233,7 @@ namespace RandomCats.Forms
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(14)))));
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button3.ForeColor = System.Drawing.Color.White;
             this.button3.Location = new System.Drawing.Point(1262, 12);
             this.button3.Name = "button3";
@@ -237,6 +248,7 @@ namespace RandomCats.Forms
             // 
             this.button12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(14)))));
+            this.button12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button12.ForeColor = System.Drawing.Color.White;
             this.button12.Location = new System.Drawing.Point(1262, 62);
             this.button12.Name = "button12";
@@ -333,6 +345,7 @@ namespace RandomCats.Forms
             // 
             this.button13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(14)))));
+            this.button13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button13.ForeColor = System.Drawing.Color.White;
             this.button13.Location = new System.Drawing.Point(1262, 612);
             this.button13.Name = "button13";
@@ -348,6 +361,7 @@ namespace RandomCats.Forms
             // 
             this.button14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(14)))));
+            this.button14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button14.ForeColor = System.Drawing.Color.White;
             this.button14.Location = new System.Drawing.Point(1347, 112);
             this.button14.Name = "button14";

@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using IniParser;
 using IniParser.Model;
@@ -15,6 +16,9 @@ namespace RandomCats
         public static readonly string AppData = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Sefinek");
         private static readonly string AppDataRandomCats = Path.Combine(AppData, "Random cats");
         private static readonly string ConfigFilePath = Path.Combine(AppDataRandomCats, "config.ini");
+
+        [DllImport("user32.dll")]
+        private static extern bool SetProcessDpiAwarenessContext(IntPtr dpiContext);
 
         private static bool IsFirstRun()
         {
@@ -58,6 +62,9 @@ namespace RandomCats
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            SetProcessDpiAwarenessContext(new IntPtr(-4));
+
 
             if (IsFirstRun())
                 MessageBox.Show("Hey! It seems like this is your first run of the application!" +
