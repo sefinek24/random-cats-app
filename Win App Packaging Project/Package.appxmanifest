@@ -9,7 +9,7 @@
   <Identity
     Name="21936Sefinek.RandomKittens"
     Publisher="CN=Sefinek"
-    Version="1.0.2.0" />
+    Version="1.0.3.0" />
 
   <Properties>
     <DisplayName>Random Kittens</DisplayName>
@@ -43,6 +43,7 @@
           <uap:Rotation Preference="portrait"/>
           <uap:Rotation Preference="landscapeFlipped"/>
           <uap:Rotation Preference="portraitFlipped"/></uap:InitialRotationPreference>
+        <uap:LockScreen BadgeLogo="Images\BadgeLogo.png" Notification="badge"/>
       </uap:VisualElements>
     </Application>
   </Applications>
