@@ -13,16 +13,17 @@ namespace RandomCats
 {
     internal static class Program
     {
+        public static readonly string AppName = Application.ProductName;
         public static readonly string AppData = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Sefinek");
-        private static readonly string AppDataRandomCats = Path.Combine(AppData, "Random cats");
-        private static readonly string ConfigFilePath = Path.Combine(AppDataRandomCats, "config.ini");
+        private static readonly string AppDataFullPath = Path.Combine(AppData, "Random cats");
+        private static readonly string ConfigFilePath = Path.Combine(AppDataFullPath, "config.ini");
 
         [DllImport("user32.dll")]
         private static extern bool SetProcessDpiAwarenessContext(IntPtr dpiContext);
 
         private static bool IsFirstRun()
         {
-            if (!Directory.Exists(AppDataRandomCats)) Directory.CreateDirectory(AppDataRandomCats);
+            if (!Directory.Exists(AppDataFullPath)) Directory.CreateDirectory(AppDataFullPath);
 
             FileIniDataParser parser = new FileIniDataParser();
             IniData configData;

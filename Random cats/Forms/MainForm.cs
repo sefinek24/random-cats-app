@@ -12,16 +12,15 @@ namespace RandomCats.Forms
 {
     public partial class MainForm : Form
     {
-        private const string TheCatApi = "https://api.thecatapi.com/v1/breeds";
-        public static readonly string AppPath = Application.ExecutablePath;
+        private static readonly string TheCatApi = "https://api.thecatapi.com/v1/breeds";
         public static readonly string AutoStartTitle = "Random cat images UwU";
-        private readonly CatApiService _catApiService;
-        private readonly string FactsHtml = Path.Combine("www", "facts.html");
 
         // Paths
-        private readonly string LoadedHtml = Path.Combine("www", "loaded.html");
+        public static readonly string AppPath = AppDomain.CurrentDomain.BaseDirectory;
+        private readonly CatApiService _catApiService;
+        private readonly string FactsHtml = Path.Combine(AppPath, "www", "facts.html");
+        private readonly string LoadedHtml = Path.Combine(AppPath, "www", "loaded.html");
         private Breeds _breedsForm;
-
 
         public MainForm(CatApiService catApiService)
         {
@@ -54,7 +53,7 @@ namespace RandomCats.Forms
                 }
                 else
                 {
-                    MessageBox.Show(@"Something went wrong.");
+                    MessageBox.Show(@"Something went wrong.", Program.AppName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -95,16 +94,16 @@ namespace RandomCats.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(@"Wystąpił błąd podczas pobierania faktów o kotach: " + ex.Message);
+                MessageBox.Show(@"An error occurred while retrieving cat facts: " + ex.Message, Program.AppName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private async Task<string> GetCatFact()
+        private static async Task<string> GetCatFact()
         {
             using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage response = await client.GetAsync("https://catfact.ninja/fact");
-                if (!response.IsSuccessStatusCode) throw new Exception("Wystąpił błąd podczas pobierania faktów o kotach. Kod odpowiedzi HTTP: " + response.StatusCode);
+                if (!response.IsSuccessStatusCode) throw new Exception("An error occurred while retrieving cat facts. HTTP response code: " + response.StatusCode);
 
                 string json = await response.Content.ReadAsStringAsync();
                 dynamic factData = JsonConvert.DeserializeObject(json);
@@ -282,11 +281,11 @@ namespace RandomCats.Forms
 
                 if (apiResponse.Success) return apiResponse.Message;
 
-                MessageBox.Show($"Something went wrong.\n\nResponse code: {apiResponse.Status}\nMessage: {apiResponse.Message}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Something went wrong.\n\nResponse code: {apiResponse.Status}\nMessage: {apiResponse.Message}", Program.AppName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                MessageBox.Show($"An error occurred while retrieving data from the API.\n\nResponse: {response.StatusCode}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"An error occurred while retrieving data from the API.\n\nResponse: {response.StatusCode}", Program.AppName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return null;
