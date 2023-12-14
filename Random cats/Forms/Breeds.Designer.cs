@@ -742,6 +742,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Breeds";
+            this.Opacity = 0.98D;
             this.Text = "Breeds";
             this.Load += new System.EventHandler(this.Breeds_Load);
             this.ResumeLayout(false);

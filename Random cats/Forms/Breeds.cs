@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Windows.Forms;
@@ -10,7 +10,7 @@ namespace RandomCats.Forms
     public partial class Breeds : Form
     {
         private string _breedId;
-        private string Wikipedia;
+        private string _wikipedia;
 
         public Breeds(string breedId)
         {
@@ -60,11 +60,11 @@ namespace RandomCats.Forms
                     label44.Text = apiResponse.Suppressed_tail.ToString();
                     label46.Text = apiResponse.Short_legs.ToString();
 
-                    Wikipedia = apiResponse.Wikipedia_url;
+                    _wikipedia = apiResponse.Wikipedia_url;
                 }
                 else
                 {
-                    Console.WriteLine(@"Wystąpił błąd podczas pobierania danych z API.");
+                    MessageBox.Show(@"An error occurred while fetching data from the API.", Program.AppName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -82,7 +82,7 @@ namespace RandomCats.Forms
 
         private void OpenWiki_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start(Wikipedia);
+            Process.Start(_wikipedia);
         }
     }
 }

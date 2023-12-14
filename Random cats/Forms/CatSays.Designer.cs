@@ -137,6 +137,7 @@ namespace RandomCats.Forms
             this.Controls.Add(this.textBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "CatSays";
+            this.Opacity = 0.98D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cat says...";
             this.ResumeLayout(false);

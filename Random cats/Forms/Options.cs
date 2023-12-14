@@ -8,6 +8,8 @@ namespace RandomCats.Forms
 {
     public partial class Options : Form
     {
+        private readonly string _webView2Folder = Path.Combine(Program.AppData, "EBWebView");
+
         public Options()
         {
             InitializeComponent();
@@ -19,7 +21,7 @@ namespace RandomCats.Forms
             button3.Text = isAppInAutoStart ? "Remove from autostart" : "Add to autostart";
         }
 
-        private bool IsApplicationInAutoStart(string publisherName, string appPath)
+        private static bool IsApplicationInAutoStart(string publisherName, string appPath)
         {
             RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
             string value = key?.GetValue(publisherName) as string;
@@ -53,16 +55,14 @@ namespace RandomCats.Forms
 
             await Task.Delay(100);
 
-            string webView2Folder = Path.Combine(Program.AppData, "EBWebView");
-
             try
             {
                 long totalSavedSpace = 0;
                 int filesDeleted = 0;
 
-                if (Directory.Exists(webView2Folder))
+                if (Directory.Exists(_webView2Folder))
                 {
-                    string[] files = Directory.GetFiles(webView2Folder, "*", SearchOption.AllDirectories);
+                    string[] files = Directory.GetFiles(_webView2Folder, "*", SearchOption.AllDirectories);
 
                     foreach (string file in files)
                         try

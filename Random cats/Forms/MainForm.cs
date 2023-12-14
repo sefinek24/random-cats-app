@@ -18,8 +18,8 @@ namespace RandomCats.Forms
         // Paths
         public static readonly string AppPath = AppDomain.CurrentDomain.BaseDirectory;
         private readonly CatApiService _catApiService;
-        private readonly string FactsHtml = Path.Combine(AppPath, "www", "facts.html");
-        private readonly string LoadedHtml = Path.Combine(AppPath, "www", "loaded.html");
+        private readonly string _factsHtml = Path.Combine(AppPath, "www", "facts.html");
+        private readonly string _loadedHtml = Path.Combine(AppPath, "www", "loaded.html");
         private Breeds _breedsForm;
 
         public MainForm(CatApiService catApiService)
@@ -68,7 +68,7 @@ namespace RandomCats.Forms
             await webView21.EnsureCoreWebView2Async(coreWeb);
 
 
-            string html = File.ReadAllText(LoadedHtml);
+            string html = File.ReadAllText(_loadedHtml);
             webView21.NavigateToString(html);
         }
 
@@ -88,7 +88,7 @@ namespace RandomCats.Forms
             {
                 string fact = await GetCatFact();
 
-                string htmlTemplate = File.ReadAllText(FactsHtml);
+                string htmlTemplate = File.ReadAllText(_factsHtml);
                 string updatedHtml = htmlTemplate.Replace("{{CatFact}}", fact);
                 webView21.NavigateToString(updatedHtml);
             }
@@ -202,7 +202,7 @@ namespace RandomCats.Forms
             string size = form2.TextSize;
             string color = form2.TextColor;
 
-            string url = $"https://cataas.com/cat/gif/says/{text}?filter=sepia&color={color}&size={size}&type=or";
+            string url = $"https://cataas.com/cat/gif/says/{text}?filter=mono&color={color}&size={size}&type=medium";
             webView21.CoreWebView2.Navigate(url);
         }
 
