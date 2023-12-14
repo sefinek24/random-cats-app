@@ -239,7 +239,7 @@ namespace RandomCats.Forms
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(169, 44);
             this.button3.TabIndex = 15;
-            this.button3.Text = "Informations";
+            this.button3.Text = "Information";
             this.toolTip1.SetToolTip(this.button3, "Get information about the application version and author.");
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.Informations_Click);
