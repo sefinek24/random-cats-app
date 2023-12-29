@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Random cats")]
-[assembly: AssemblyDescription("Your favourite cats are here!")]
+[assembly: AssemblyDescription("Your favourite cats are here! >w<")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Sefinek Inc.")]
 [assembly: AssemblyProduct("Random cat images")]
@@ -32,6 +32,6 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.4.0")]
-[assembly: AssemblyFileVersion("1.0.4.0")]
+[assembly: AssemblyVersion("1.0.5.0")]
+[assembly: AssemblyFileVersion("1.0.5.0")]
 [assembly: NeutralResourcesLanguage("en")]
