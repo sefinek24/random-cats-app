@@ -6,3 +6,5 @@ Download now from Microsoft store:
 
 ## Screenshot
 ![Random_cats_EZz9s3kNrjgl.jpg](Assets/Random_cats_EZz9s3kNrjgl.jpg)
+
+## MIT License
