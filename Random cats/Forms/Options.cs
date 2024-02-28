@@ -6,102 +6,104 @@ using Microsoft.Win32;
 
 namespace RandomCats.Forms
 {
-    public partial class Options : Form
-    {
-        private readonly string _webView2Folder = Path.Combine(Program.AppData, "EBWebView");
+	public sealed partial class Options : Form
+	{
+		private readonly string _webView2Folder = Path.Combine(Program.AppData, "EBWebView");
 
-        public Options()
-        {
-            InitializeComponent();
-        }
+		public Options()
+		{
+			InitializeComponent();
 
-        private void Options_Load(object sender, EventArgs e)
-        {
-            bool isAppInAutoStart = IsApplicationInAutoStart(MainForm.AutoStartTitle, MainForm.AppPath);
-            button3.Text = isAppInAutoStart ? "Remove from autostart" : "Add to autostart";
-        }
+			DoubleBuffered = true;
+		}
 
-        private static bool IsApplicationInAutoStart(string publisherName, string appPath)
-        {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
-            string value = key?.GetValue(publisherName) as string;
-            key?.Close();
+		private void Options_Load(object sender, EventArgs e)
+		{
+			bool isAppInAutoStart = IsApplicationInAutoStart(MainForm.AutoStartTitle, MainForm.AppPath);
+			button3.Text = isAppInAutoStart ? "Remove from autostart" : "Add to autostart";
+		}
 
-            return string.Equals(value, appPath, StringComparison.OrdinalIgnoreCase);
-        }
+		private static bool IsApplicationInAutoStart(string publisherName, string appPath)
+		{
+			RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
+			string value = key?.GetValue(publisherName) as string;
+			key?.Close();
 
-        private void AddToAutoStart_Click(object sender, EventArgs e)
-        {
-            bool isAppInAutoStart = IsApplicationInAutoStart(MainForm.AutoStartTitle, MainForm.AppPath);
+			return string.Equals(value, appPath, StringComparison.OrdinalIgnoreCase);
+		}
 
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
-            if (isAppInAutoStart)
-            {
-                key?.DeleteValue(MainForm.AutoStartTitle, false);
-                button3.Text = @"Add to AutoStart";
-            }
-            else
-            {
-                key?.SetValue(MainForm.AutoStartTitle, MainForm.AppPath);
-                button3.Text = @"Remove from AutoStart";
-            }
+		private void AddToAutoStart_Click(object sender, EventArgs e)
+		{
+			bool isAppInAutoStart = IsApplicationInAutoStart(MainForm.AutoStartTitle, MainForm.AppPath);
 
-            key?.Close();
-        }
+			RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
+			if (isAppInAutoStart)
+			{
+				key?.DeleteValue(MainForm.AutoStartTitle, false);
+				button3.Text = @"Add to AutoStart";
+			}
+			else
+			{
+				key?.SetValue(MainForm.AutoStartTitle, MainForm.AppPath);
+				button3.Text = @"Remove from AutoStart";
+			}
 
-        private async void DeleteCache_Click(object sender, EventArgs e)
-        {
-            Hide();
+			key?.Close();
+		}
 
-            await Task.Delay(100);
+		private async void DeleteCache_Click(object sender, EventArgs e)
+		{
+			Hide();
 
-            try
-            {
-                long totalSavedSpace = 0;
-                int filesDeleted = 0;
+			await Task.Delay(100);
 
-                if (Directory.Exists(_webView2Folder))
-                {
-                    string[] files = Directory.GetFiles(_webView2Folder, "*", SearchOption.AllDirectories);
+			try
+			{
+				long totalSavedSpace = 0;
+				int filesDeleted = 0;
 
-                    foreach (string file in files)
-                        try
-                        {
-                            FileInfo fileInfo = new FileInfo(file);
+				if (Directory.Exists(_webView2Folder))
+				{
+					string[] files = Directory.GetFiles(_webView2Folder, "*", SearchOption.AllDirectories);
 
-                            totalSavedSpace += fileInfo.Length;
+					foreach (string file in files)
+						try
+						{
+							FileInfo fileInfo = new FileInfo(file);
 
-                            File.Delete(file);
+							totalSavedSpace += fileInfo.Length;
 
-                            filesDeleted++;
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine(@"An error occurred while deleting the file: " + ex.Message);
-                        }
+							File.Delete(file);
 
-                    if (filesDeleted > 0)
-                    {
-                        // Files were deleted, inform the user about the memory saved
-                        double savedSpaceInMb = (double)totalSavedSpace / (1024 * 1024);
-                        MessageBox.Show($"Deleted {filesDeleted} files.\nSaved {savedSpaceInMb:0.##} MB of memory.");
-                    }
-                    else
-                    {
-                        MessageBox.Show(@"No files to delete.");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show(@"WebView2 folder not found. No files to delete.");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(@"An error occurred while deleting cache files: " + ex.Message);
-            }
+							filesDeleted++;
+						}
+						catch (Exception ex)
+						{
+							Console.WriteLine(@"An error occurred while deleting the file: " + ex.Message);
+						}
 
-            Show();
-        }
-    }
+					if (filesDeleted > 0)
+					{
+						// Files were deleted, inform the user about the memory saved
+						double savedSpaceInMb = (double)totalSavedSpace / (1024 * 1024);
+						MessageBox.Show($"Deleted {filesDeleted} files.\nSaved {savedSpaceInMb:0.##} MB of memory.");
+					}
+					else
+					{
+						MessageBox.Show(@"No files to delete.");
+					}
+				}
+				else
+				{
+					MessageBox.Show(@"WebView2 folder not found. No files to delete.");
+				}
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(@"An error occurred while deleting cache files: " + ex.Message);
+			}
+
+			Show();
+		}
+	}
 }

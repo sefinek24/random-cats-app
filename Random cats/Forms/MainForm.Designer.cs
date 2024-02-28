@@ -1,6 +1,6 @@
 namespace RandomCats.Forms
 {
-    partial class MainForm
+    sealed partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -242,7 +242,7 @@ namespace RandomCats.Forms
             this.button3.Text = "Information";
             this.toolTip1.SetToolTip(this.button3, "Get information about the application version and author.");
             this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.Informations_Click);
+            this.button3.Click += new System.EventHandler(this.Information_Click);
             // 
             // button12
             // 
@@ -301,7 +301,7 @@ namespace RandomCats.Forms
             "415 Unsupported Media Type",
             "416 Request Range Not Satisfiable",
             "417 Expectation Failed",
-            "418 I’m a teapot",
+            "418 Iâ€™m a teapot",
             "420 Enhance Your Calm",
             "421 Misdirected Request",
             "422 Unprocessable Entity",

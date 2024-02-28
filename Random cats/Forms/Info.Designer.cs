@@ -1,6 +1,6 @@
 namespace RandomCats.Forms
 {
-    partial class Info
+    sealed partial class Info
     {
         /// <summary>
         /// Required designer variable.
