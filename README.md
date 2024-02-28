@@ -8,3 +8,4 @@ Download now from Microsoft store:
 ![Random_cats_EZz9s3kNrjgl.jpg](Assets/Random_cats_EZz9s3kNrjgl.jpg)
 
 ## MIT License
+See the [LICENSE](LICENSE) file more details.
