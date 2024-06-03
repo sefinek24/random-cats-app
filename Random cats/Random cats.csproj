@@ -60,16 +60,16 @@
       <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.8.0.1\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.2478.35, Culture=neutral, PublicKeyToken=2a8ab48044d2601e">
-      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.2478.35\lib\net45\Microsoft.Web.WebView2.Core.dll</HintPath>
+    <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.2535.41, Culture=neutral, PublicKeyToken=2a8ab48044d2601e">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.2535.41\lib\net462\Microsoft.Web.WebView2.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Web.WebView2.WinForms, Version=1.0.2478.35, Culture=neutral, PublicKeyToken=2a8ab48044d2601e">
-      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.2478.35\lib\net45\Microsoft.Web.WebView2.WinForms.dll</HintPath>
+    <Reference Include="Microsoft.Web.WebView2.WinForms, Version=1.0.2535.41, Culture=neutral, PublicKeyToken=2a8ab48044d2601e">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.2535.41\lib\net462\Microsoft.Web.WebView2.WinForms.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.2478.35, Culture=neutral, PublicKeyToken=2a8ab48044d2601e">
-      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.2478.35\lib\net45\Microsoft.Web.WebView2.Wpf.dll</HintPath>
+    <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.2535.41, Culture=neutral, PublicKeyToken=2a8ab48044d2601e">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.2535.41\lib\net462\Microsoft.Web.WebView2.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -184,6 +184,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Web.WebView2.1.0.2365.46\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Web.WebView2.1.0.2365.46\build\Microsoft.Web.WebView2.targets'))" />
     <Error Condition="!Exists('../packages/Microsoft.Web.WebView2.1.0.2478.35/build/Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '../packages/Microsoft.Web.WebView2.1.0.2478.35/build/Microsoft.Web.WebView2.targets'))" />
+    <Error Condition="!Exists('../packages/Microsoft.Web.WebView2.1.0.2535.41/build/Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '../packages/Microsoft.Web.WebView2.1.0.2535.41/build/Microsoft.Web.WebView2.targets'))" />
   </Target>
   <Import Project="../packages/Microsoft.Web.WebView2.1.0.2478.35/build/Microsoft.Web.WebView2.targets" Condition="Exists('../packages/Microsoft.Web.WebView2.1.0.2478.35/build/Microsoft.Web.WebView2.targets')" />
+  <Import Project="../packages/Microsoft.Web.WebView2.1.0.2535.41/build/Microsoft.Web.WebView2.targets" Condition="Exists('../packages/Microsoft.Web.WebView2.1.0.2535.41/build/Microsoft.Web.WebView2.targets')" />
 </Project>
